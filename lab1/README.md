@@ -10,8 +10,6 @@ The main feature is a grid/ist of cards, the one in current focus is indicated.
 
 GitHub - HackerNews/API: Documentation and Samples for the Official HN API
 
-In the API: title, by, url (possibly), and Type
-
 Pull articles using a random index from the array
 
 APIs:
