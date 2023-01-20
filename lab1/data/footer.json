@@ -1,0 +1,14 @@
+{
+    "cells":[
+        [{
+            "img": "./images/github-mark-white.png",
+            "href": "https://github.com/HackerNews/API",
+            "text": ""
+        }],
+        [{
+            "img": "./images/email.png",
+            "href": "mailto:weis2@rpi.edu",
+            "text": "Email Me"
+          }]
+    ]
+}
