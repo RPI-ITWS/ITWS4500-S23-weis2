@@ -20,8 +20,12 @@ I made a footer by using ajax and json. By this footer, user can easily navigate
 
 Reference:
 https://www.w3schools.com/jsref/met_win_setinterval.asp
+
 https://github.com/logos
+
 https://getbootstrap.com/docs/5.1/components/navbar/
+
 https://stackoverflow.com/questions/53730681/use-of-bootstrap-container
+
 https://stackoverflow.com/questions/65946648/correct-way-to-fetch-data-from-an-array-of-ids
 
