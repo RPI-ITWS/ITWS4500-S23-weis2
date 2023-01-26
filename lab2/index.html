@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ITWS-weis2-lab2</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header col-md-6 col-md-push-5 col-sm-6 col-sm-push-4">
+                <a class="navbar-brand" href="https://openweathermap.org/API" id="title">Open Weather</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style = "background-color:lightblue; height: 1000px; width: 800px;">
+
+        <!-- <button onclick="getLocation()">getLocation</button>
+        <button onclick="getLocation()"></button> -->
+        <p id="demo"></p>
+        <div class="row">
+            <div id="Location"></div>
+            <div id="Description"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-md-push-2 col-sm-push-2" id="IMG">
+                <img  width="80" height="80" src="" id="TempImg">
+            </div>
+            <div class="col-md-6 col-sm-4 col-md-push-1 col-sm-push-1" id="Wind"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-md-push-2 col-sm-push-2" id="Temp"></div>
+            <div class="col-md-6 col-sm-4 col-md-push-1 col-sm-push-1" id="Humidity"></div>
+        </div>
+    </div>
+    <!-- <div class="container-fluid" style = "background-color: thistle; height: 500px;">
+        hello world
+    </div> -->
+<script>
+    var x = document.getElementById("demo");
+    var key = "6c383ebc2e93c8bc6263010e56b6fdb4"
+    var metric = "&units=metric"
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            var lat = position.coords.latitude.toFixed(3);
+            console.log(lat);
+            var lon = position.coords.longitude.toFixed(3);
+            console.log(lon);
+        
+        
+        var api = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+key+metric;
+        console.log(api);
+
+        fetch(api)
+            .then(response => response.json())
+            .then(json => {
+                document.getElementById("Location").innerHTML += json.name;
+                document.getElementById("Description").innerHTML += json.weather[0].description;
+                var tempCel = json.main.temp;
+                document.getElementById("Wind").innerHTML += "<p class='text'> Wind Speed: " + json.wind.speed + "</p>";  
+                document.getElementById("Humidity").innerHTML += "<p class='text'> Humidity: " + json.main.humidity + "</p>";            
+                document.getElementById("Temp").innerHTML += "<p id='TempNum'>" + Math.round(tempCel) + "</p>" + "<p id='Celsymbol'>℃</p>";
+                document.getElementById("TempImg").src= "http://openweathermap.org/img/wn/"+ json.weather[0].icon + "@2x.png";;
+            })
+            .catch(err => console.log('Request Failed', err));
+            })
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude;
+    }
+</script>
+<script src="js/jquery-3.6.3.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
