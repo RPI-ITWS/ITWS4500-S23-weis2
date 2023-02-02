@@ -1,9 +1,14 @@
-var x = document.getElementById("demo");
+var ChangeUnit;
+
+window.onload = function(){
+
 var key = "6c383ebc2e93c8bc6263010e56b6fdb4";
 var metric = "&units=metric";
+var unit = "℃";
 getLocation();
 
 function getLocation() {
+    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             var lat = position.coords.latitude.toFixed(3);
@@ -25,9 +30,9 @@ function getLocation() {
                 var tempmin = json.main.temp_min;
                 document.getElementById("Wind").innerHTML += "<p class='text'> Wind Speed: " + json.wind.speed + "mps"+"</p>";  
                 document.getElementById("Humidity").innerHTML += "<p class='text'> Humidity: " + json.main.humidity + "%" + "</p>";            
-                document.getElementById("Temp").innerHTML += "<p id='TempNum'>" + Math.round(tempCel) + "</p>" + "<p id='Celsymbol'>℃</p>";
+                document.getElementById("Temp").innerHTML += "<p id='TempNum'>" + Math.round(tempCel) + "</p>" + "<p id='Celsymbol'>"+ unit + "</p>";
                 document.getElementById("TempImg").src= "http://openweathermap.org/img/wn/"+ json.weather[0].icon + "@2x.png";
-                document.getElementById("Range").innerHTML += "<p class='text'>" + Math.round(tempmax) + "℃" + "  ~  " + Math.round(tempmin) + "℃" + "</p>"; 
+                document.getElementById("Range").innerHTML += "<p class='text'>" + Math.round(tempmax) + unit+ "  ~  " + Math.round(tempmin) + unit+ "</p>"; 
             })
             .catch(err => console.log('Request Failed', err));
             })
@@ -37,9 +42,47 @@ function getLocation() {
 // function getLocaltime(){
 //     return new Date().toLocaleTimeString();
 // }
+ChangeUnit = function ChangeUnit(){
+    if (metric == "&units=metric") {
+        metric = "&units=imperial";
+        unit = "℉";
+    }
+    else {
+        metric = "&units=metric";
+        unit = "℃";
+    }
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+            var lat = position.coords.latitude.toFixed(3);
+            console.log(lat);
+            var lon = position.coords.longitude.toFixed(3);
+            console.log(lon);
+        
+        
+        var api = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+key+metric;
+        console.log(api);
+
+        fetch(api)
+            .then(response => response.json())
+            .then(json => {
+                document.getElementById("Location").innerHTML = json.name;
+                document.getElementById("Description").innerHTML = json.weather[0].description;
+                var tempCel = json.main.temp;
+                var tempmax = json.main.temp_max;
+                var tempmin = json.main.temp_min;
+                document.getElementById("Wind").innerHTML = "<p class='text'> Wind Speed: " + json.wind.speed + "mps"+"</p>";  
+                document.getElementById("Humidity").innerHTML = "<p class='text'> Humidity: " + json.main.humidity + "%" + "</p>";            
+                document.getElementById("Temp").innerHTML = "<p id='TempNum'>" + Math.round(tempCel) + "</p>" + "<p id='Celsymbol'>" + unit + "</p>";
+                document.getElementById("TempImg").src= "http://openweathermap.org/img/wn/"+ json.weather[0].icon + "@2x.png";
+                document.getElementById("Range").innerHTML = "<p class='text'>" + Math.round(tempmax) + unit + "  ~  " + Math.round(tempmin) + unit + "</p>"; 
+            })
+            .catch(err => console.log('Request Failed', err));
+            })
+    }
+
 
 timemove();
-
+clearInterval(timemove, 100000);
 function timemove() {
 
     // var date = new Date();
@@ -60,12 +103,12 @@ function timemove() {
     
     setInterval(timemove, 1000);
     DateTime.innerHTML = new Date().toString();
-    clearInterval(timemove, 100000);
 }
-
+clearInterval(timemove, 100000)
 // function getTimeZone() {
 //     var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
 //     return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
 // }
 
 // DateTime.innerHTML += getTimeZone();
+}
