@@ -25,8 +25,7 @@ This is an API that makes accessible all the Pokemon data in one place. It serve
 
 Struggles: I learned about the bootstraps grid system this time to made the website looks same on PC and mobile. Not any big struggle for this lab.
 
-Creativity: I use a fixed navi bar with the link of open weather api. And find the website of openweather's icon to display weather icon that can match with the weather description in api. Also I use setinterval to refresh time per second. Also I utilized the max temperature and minimum temperature in api. 
-
+Creativity: I use a fixed navi bar with the link of open weather api. And find the website of openweather's icon to display weather icon that can match with the weather description in api. And i found Date api to get current detailed time. Then use setinterval to refresh time per second. Also I utilized the max temperature and minimum temperature in api. Lastly, I designed the button to change the unit of temperature. For my button, I used the css animation to make it looks fancy.
 
 
 Reference:
