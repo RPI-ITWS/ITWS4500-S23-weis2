@@ -82,7 +82,7 @@ ChangeUnit = function ChangeUnit(){
 
 
 timemove();
-clearInterval(timemove);
+
 function timemove() {
 
     // var date = new Date();
@@ -103,6 +103,7 @@ function timemove() {
     
     setInterval(timemove, 1000);
     DateTime.innerHTML = new Date().toString();
+    clearInterval(timemove);
 }
 // function getTimeZone() {
 //     var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
