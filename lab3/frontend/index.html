@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background: #e2e4e8;
+      }
+
+      .header {
+        text-align: center;
+      }
+      .input {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .input > input {
+        box-sizing: border-box;
+        width: 200px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        padding: 0 10px;
+      }
+      .input > button {
+        margin-left: 10px;
+        width: 90px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+      }
+      .select {
+        text-align: center;
+      }
+      .select > select {
+        margin-top: 10px;
+        width: 300px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        padding: 0 10px;
+      }
+
+      .mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .loading > img {
+        width: 50px;
+        height: 50px;
+        animation: rotate 2s linear infinite;
+      }
+      .loading > div {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .reslut {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 20px;
+        padding: 20px;
+      }
+      .item {
+        border-radius: 10px;
+        box-sizing: border-box;
+        padding: 10px;
+        background: #fff;
+      }
+
+      .card {
+        border-radius: 10px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card > div {
+        margin-top: 30px;
+      }
+
+      .card > .img {
+        margin-top: 10px;
+        width: 166px;
+        height: 166px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .card > .img > img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .id {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      .name {
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .no-data {
+        grid-column: span 6;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mask">
+      <div class="loading">
+        <img src="./images/loading.png" alt="" />
+        <div>loading...</div>
+      </div>
+    </div>
+    <div class="header">
+      <div class="logo">
+        <a herf="https://pokeapi.co/"><img src="./images/logo.png" alt="" /></a>
+      </div>
+    </div>
+
+    <div class="input">
+      <input type="text" placeholder="Enter Pokemon name or id" />
+      <button>search</button>
+    </div>
+
+    <div class="select">
+      <select name="" id="">
+        <option value="">Select type</option>
+      </select>
+    </div>
+
+    <div class="reslut">
+      <div class="no-data">No Data</div>
+    </div>
+
+    <script>
+      const input = document.querySelector('input')
+      const button = document.querySelector('button')
+      const select = document.querySelector('select')
+      const mask = document.querySelector('.mask')
+
+      const result = document.querySelector('.reslut')
+
+      const processId = id => {
+        if (id < 10) {
+          return `00${id}`
+        } else if (id < 100) {
+          return `0${id}`
+        } else {
+          return id
+        }
+      }
+
+      const color = {
+        normal: '#9fa19f',
+        fighting: '#ef8733',
+        flying: '#8db7ea',
+        poison: '#8745c4',
+        ground: '#88542b',
+        rock: '#aea985',
+        bug: '#94a038',
+        ghost: '#69436d',
+        steel: '#6f9fb5',
+        fire: '#d33d35',
+        water: '#437ee7',
+        grass: '#5b9f3d',
+        electric: '#f1c242',
+        psychic: '#dc5079',
+        ice: '#70d5fb',
+        dragon: '#535fd9',
+        dark: '#4e4140',
+        fairy: '#df77e9',
+        unknown: '#4c675e'
+      }
+      const renderResult = data => {
+        if (!data?.length) return (result.innerHTML = '<div class="no-data">No Data</div>')
+        result.innerHTML = ''
+        data.forEach(item => {
+          result.innerHTML += `
+          <div class="item">
+            <div class="card" style="background: ${color[item.type[0]]}">
+              <div class="img">
+                <img src="${item.image}" alt="" />
+              </div>
+              <div class="id">#${processId(item.id)}</div>
+              <div class="name">${item.name}</div>
+              <div class="type">type: ${item.type.join(',')}</div>
+            </div>
+          </div>
+          `
+        })
+      }
+
+      const queryType = () => {
+        fetch('http://localhost:3001/type')
+          .then(res => res.json())
+          .then(res => {
+            res.data.forEach(item => {
+              const option = document.createElement('option')
+              option.value = item.id
+              option.innerText = item.name
+              select.appendChild(option)
+            })
+          })
+      }
+
+      select.onchange = () => {
+        const value = select.value
+        if (value === '') {
+          alert('Please select a type')
+          return
+        }
+
+        input.value = ''
+
+        mask.style.display = 'flex'
+        fetch(`http://localhost:3001/type/${value}`)
+          .then(res => res.json())
+          .then(res => {
+            renderResult(res.data)
+          })
+          .finally(() => {
+            mask.style.display = 'none'
+          })
+      }
+
+      button.onclick = function () {
+        const value = input.value
+        select.value = ''
+        queryData(value)
+      }
+
+      const queryData = name => {
+        mask.style.display = 'flex'
+        const url = name ? `http://localhost:3001/pokemon/${name}` : 'http://localhost:3001/pokemon'
+        fetch(url)
+          .then(res => res.json())
+          .then(res => {
+            renderResult(res.data)
+          })
+          .finally(() => {
+            mask.style.display = 'none'
+          })
+      }
+
+      window.onload = () => {
+        queryData()
+        queryType()
+      }
+    </script>
+  </body>
+</html>
