@@ -1,5 +1,5 @@
 // app configuration
 module.exports = {
   // port name
-  port: 3001
+  port: 3000
 }
