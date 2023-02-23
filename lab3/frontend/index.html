@@ -239,7 +239,7 @@
       }
 
       const queryType = () => {
-        fetch('http://52.255.153.64/type')
+        fetch('http://52.255.153.64:3000/type')
           .then(res => res.json())
           .then(res => {
             res.data.forEach(item => {
