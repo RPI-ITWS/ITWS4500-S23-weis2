@@ -239,7 +239,7 @@
       }
 
       const queryType = () => {
-        fetch('http://52.255.153.64:3000/type')
+        fetch('https://52.255.153.64:3000/type')
           .then(res => res.json())
           .then(res => {
             res.data.forEach(item => {
@@ -261,7 +261,7 @@
         input.value = ''
 
         mask.style.display = 'flex'
-        fetch(`http://52.255.153.64:3000/type/${value}`)
+        fetch(`https://52.255.153.64:3000/type/${value}`)
           .then(res => res.json())
           .then(res => {
             renderResult(res.data)
@@ -279,7 +279,7 @@
 
       const queryData = name => {
         mask.style.display = 'flex'
-        const url = name ? `http://52.255.153.64:3000/pokemon/${name}` : 'http://52.255.153.64:3000/pokemon'
+        const url = name ? `https://52.255.153.64:3000/pokemon/${name}` : 'https://52.255.153.64:3000/pokemon'
         fetch(url)
           .then(res => res.json())
           .then(res => {
