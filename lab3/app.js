@@ -5,12 +5,14 @@ const config = require('./config/app.config')
 
 const pokemonRouter = require('./router/pokemon.router')
 
-app.all('*', async (req, res, next) => {
+app.use(express.static('public'))
+
+app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')
   res.header('Access-Control-Allow-Headers', 'X-Requested-With')
   res.header('Access-Control-Allow-Headers', 'Content-Type')
-  await next()
+  next()
 })
 
 // register route

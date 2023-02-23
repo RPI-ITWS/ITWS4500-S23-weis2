@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "lab3",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.1"
   },
   "devDependencies": {
     "node-fetch": "^2.6.9",

@@ -155,13 +155,13 @@
   <body>
     <div class="mask">
       <div class="loading">
-        <img src="./images/loading.png" alt="" />
+        <img src="/images/loading.png" alt="" />
         <div>loading...</div>
       </div>
     </div>
     <div class="header">
       <div class="logo">
-        <a herf="https://pokeapi.co/"><img src="./images/logo.png" alt="" /></a>
+        <img src="/images/logo.png" alt="" />
       </div>
     </div>
 
@@ -239,7 +239,7 @@
       }
 
       const queryType = () => {
-        fetch('http://localhost:3000/type')
+        fetch('/api/v1/type')
           .then(res => res.json())
           .then(res => {
             res.data.forEach(item => {
@@ -261,7 +261,7 @@
         input.value = ''
 
         mask.style.display = 'flex'
-        fetch(`http://localhost:3000/type/${value}`)
+        fetch(`/api/v1/type/${value}`)
           .then(res => res.json())
           .then(res => {
             renderResult(res.data)
@@ -279,7 +279,8 @@
 
       const queryData = name => {
         mask.style.display = 'flex'
-        const url = name ? `http://locahost:3000/pokemon/${name}` : 'http://localhost:3000/pokemon'
+        const url = name ? `/api/v1/pokemon/${name}` : '/api/v1/pokemon'
+        console.log(url)
         fetch(url)
           .then(res => res.json())
           .then(res => {
