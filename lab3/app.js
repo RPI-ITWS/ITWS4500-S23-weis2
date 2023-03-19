@@ -16,7 +16,7 @@ app.all('*', (req, res, next) => {
 })
 
 // register route
-app.use('/ITWS4500-S23-weis2/lab3/', pokemonRouter)
+app.use('/', pokemonRouter)
 
 app.listen(config.port)
 
