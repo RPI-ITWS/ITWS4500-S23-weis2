@@ -1,0 +1,22 @@
+.app-body {
+  background-color: white;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-header {
+  color: black;
+  font-size: 3rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
