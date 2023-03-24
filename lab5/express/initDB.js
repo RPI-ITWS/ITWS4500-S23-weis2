@@ -7,8 +7,6 @@ const client = new MongoClient(url);
 const store = async (index) => {
 
     var api = "https://pokeapi.co/api/v2/pokemon/" + index;
-    // api = api + name;
-    // api = api + "&units=metric&APPID=611e87ccd437ffe008e2daca74b0c1e5";
 
     const response = await axios.get(api);
     return response.data;
