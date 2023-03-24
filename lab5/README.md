@@ -24,7 +24,7 @@ In this lab the struggle for me was figuring out how to build REST API with expr
 For Mongodb, I add IP address 0.0.0.0/0 to network access, which enable everyone to having access from anywhere. And because the data structure from pokeapi is so complex. In my initDB.js, I only extract the data I need and restructure it to make the lab easier. 
 
 
-The website include two parts. The first search bar enabling user to fetch external api to get data by pokemon's id or name. And then user can add pokemon data to form and they are able to change any feature and interact with the DB by four http verbs. For the frontend, I learned about using react bootstrap to make the website looks clean and easy to interact with. User can search to get front and back picture, abilities, types and stats for each pokemon. 
+The website includes two parts. The first search bar enabling user to fetch external api to get data by pokemon's id or name. And then user can add pokemon data to form and they are able to change any feature and interact with the DB by four http verbs. For the frontend, I learned about using react bootstrap to make the website looks clean and easy to interact with. User can search to get front and back picture, abilities, types and stats for each pokemon. 
 
 
 REFERENCE:
