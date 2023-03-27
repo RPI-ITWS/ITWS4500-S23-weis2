@@ -99,7 +99,7 @@ function Pokemon() {
             alert('Please enter a valid ID')
             return;
         }
-        fetch('http://localhost:3000/db/' + form.id)
+        fetch('/db/' + form.id)
             .then(response => response.json())
             .then(response => {
                 if (!response.data) {
@@ -115,7 +115,7 @@ function Pokemon() {
     }
 
     const handlePost = () => {
-        fetch('http://localhost:3000/db/', {
+        fetch('/db/', {
             method: 'POST',
             body: JSON.stringify(form),
             headers: {
@@ -139,7 +139,7 @@ function Pokemon() {
             alert('Please enter a valid ID')
             return;
         }
-        fetch('http://localhost:3000/db/' + form.id, {
+        fetch('/db/' + form.id, {
             method: 'PUT',
             body: JSON.stringify(form),
             headers: {
@@ -163,7 +163,7 @@ function Pokemon() {
             alert('Please enter a valid ID')
             return;
         }
-        fetch('http://localhost:3000/db/' + form.id, {
+        fetch('/db/' + form.id, {
             method: 'DELETE',
         })
             .then(response => response.json())

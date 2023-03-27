@@ -9,8 +9,10 @@ const db = client.db('pokemons');
 const collection = db.collection('data');
 // server route handler
 // app.get('/', function(req, res) {
-//     res.sendFile(__dirname + '/lab3.html');
+//     res.sendFile(__dirname + '/build/index.html');
 // });
+
+app.use(express.static('public'))
 
 //middleware
 app.use(express.json());
