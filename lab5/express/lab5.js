@@ -20,9 +20,12 @@ app.get('/db/:number', async (req, res) => {
     const { number } = req.params;
     const data = await collection.findOne({ id: +number }, { projection: { _id: 0 } })
 
+    console.log('test');
+    
     res.status(200).send({
         data
     });
+
 });
 
 
