@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
 
-const config = require('./config/app.config')
-
 const pokemonRouter = require('./router/pokemon.router')
 
 app.use(express.static('public'))
@@ -18,6 +16,6 @@ app.all('*', (req, res, next) => {
 // register route
 app.use('/', pokemonRouter)
 
-app.listen(config.port)
-
-console.log(`server on: http://localhost:${config.port}`)
+app.listen(3000, () => (
+  console.log("Server is running on port 3000.")
+));
