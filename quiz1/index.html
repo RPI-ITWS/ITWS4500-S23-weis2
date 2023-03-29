@@ -2,59 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quiz 1</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <body style="width: 500px;margin:20px auto;display: flex;justify-content: space-between;flex-wrap: wrap">
-
     <input type="text" id="universityInput exampleInputEmail3" class="form-control"  placeholder="Enter a university name..."
-
            style="width:  500px;height: 40px ;margin: 5px 0;float: left">
     <button id="searchBtn" class="btn btn-success" style="height: 40px;float: left">Search</button>
-
-
 <div id="result" style="width: 100%"></div>
-
 <style>
-
 </style>
 <script>
     const universityInput = document.getElementById('universityInput exampleInputEmail3');
     const searchBtn = document.getElementById('searchBtn');
     const result = document.getElementById('result');
-
     searchBtn.addEventListener('click', () => {
         const universityName = universityInput.value || 'Rensselaer_Polytechnic_Institute'; // If user does not enter a valid university, default to RPI
-        const url = "http://localhost:3000/university"
-        console.log(url)
-
-
+        const url = "http://localhost:3000/university/"+universityName
         fetch(url,{method:'post',body:JSON.stringify({"name":universityName})})
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data!=undefined) {
                     const university = data;
                     result.innerHTML = `
           <h2>${university.name}</h2>
           <p><strong>Country:</strong> ${university.country}</p>
-          <p><strong>Domain:</strong> ${university.alpha_two_code}</p>
-          <p><strong>Domain:</strong> ${university.web_pages}</p>
-        `;
+          <p><strong>Country Code:</strong> ${university.alpha_two_code}</p>
+          <p><strong>Domain:</strong> ${university.web_pages}</p>`;
                 } else {
-                    result.innerHTML = `
-          <h2>No university found for ${universityName}</h2>
-        `;
+                    result.innerHTML = `<h2>No university found for ${universityName}</h2>`;
                 }
             })
             .catch(error => {
                 console.error(error);
-                result.innerHTML = `
-        <h2>An error occurred while searching for ${universityName}</h2>
-      `;
+                result.innerHTML = `<h2>An error occurred while searching for ${universityName}</h2>`;
             });
     });
-
 </script>
 </body>
 </html>
