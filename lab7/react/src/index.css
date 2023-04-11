@@ -1,0 +1,121 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+/* Normal Type */
+.normal {
+  background-color: #A8A878 !important;
+}
+
+/* Fire Type */
+.fire {
+  background-color: #F08030 !important;
+}
+
+/* Water Type */
+.water {
+  background-color: #6890F0 !important;
+}
+
+/* Electric Type */
+.electric {
+  background-color: #F8D030 !important;
+}
+
+/* Grass Type */
+.grass {
+  background-color: #78C850 !important;
+}
+
+/* Ice Type */
+.ice {
+  background-color: #98D8D8 !important;
+}
+
+/* Fighting Type */
+.fighting {
+  background-color: #C03028 !important;
+}
+
+/* Poison Type */
+.poison {
+  background-color: #A040A0 !important;
+}
+
+/* Ground Type */
+.ground {
+  background-color: #E0C068 !important;
+}
+
+/* Flying Type */
+.flying {
+  background-color: #A890F0 !important;
+}
+
+/* Psychic Type */
+.psychic {
+  background-color: #F85888 !important;
+}
+
+/* Bug Type */
+.bug {
+  background-color: #A8B820 !important;
+}
+
+/* Rock Type */
+.rock {
+  background-color: #B8A038 !important;
+}
+
+/* Ghost Type */
+.ghost {
+  background-color: #705898 !important
+}
+
+/* Dragon Type */
+.dragon {
+  background-color: #7038F8 !important;
+}
+
+/* Dark Type */
+.dark {
+  background-color: #705848 !important;
+}
+
+/* Steel Type */
+.steel {
+  background-color: #B8B8D0 !important;
+}
+
+/* Fairy Type */
+.fairy {
+  background-color: #EE99AC !important;
+}
+
+.capitalize::first-letter {
+  text-transform: uppercase;
+}
